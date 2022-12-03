@@ -27,13 +27,24 @@ public class GatewayApplication {
                 .route(r->r.path("/products/**")
                         .uri("http://localhost:8082/"))
                 .build();*/
-        return builder.routes()
+        /*return builder.routes()
                 .route(r->r.path("/customers/**")
                         .uri("lb://CUSTOMER-SERVICE"))
                 .route(r->r.path("/products/**")
                         .uri("lb://INVENTORY-SERVICE"))
+                .build();*/
+        return builder.routes()
+                .route(r->r.path("/clients/**")
+                        .uri("lb://client-account-service"))
+                .route(r->r.path("/comptes/**")
+                        .uri("lb://client-account-service"))
+                .route(r->r.path("/credits/**")
+                        .uri("lb://credit-management-service"))
+                .route(r->r.path("/operations/**").
+                        uri("lb://operation-account-service"))
                 .build();
     }
+
 
 
     //configuration dynamic

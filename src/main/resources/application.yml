@@ -3,13 +3,18 @@ spring:
     gateway:
       routes:
         - id: r1
+          uri: http://localhost:8080/
+          predicates:
+            - Path= /clients/**
+            - Path= /comptes/**
+        - id: r2
           uri: http://localhost:8081/
           predicates :
-            - Path= /customers/**
-        - id: r1
+            - Path= /credits/**
+        - id: r3
           uri: http://localhost:8082/
           predicates:
-            - Path= /products/**
+            - Path= /operations/**
     discovery:
       enabled: false
 server:
