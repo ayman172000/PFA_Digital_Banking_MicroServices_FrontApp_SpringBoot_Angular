@@ -29,15 +29,22 @@ public class ClientMapper implements  IClientMapper{
 
     @Override
     public Compte fromCompteDTO(CompteDTO compteDTO) {
-        CompteCourant compteCourant = null;
-        CompteEpargne compteEpargne = null;
         if(compteDTO instanceof CompteCourantDTO)
         {
-            BeanUtils.copyProperties(compteDTO,compteCourant);
+            //System.out.println("je suis un compte courant");
+            //System.out.println("client:"+compteDTO.getClient());
+            CompteCourant compteCourant=new CompteCourant();
+            compteCourant.setCompteId(compteDTO.getCompteId());
+            compteCourant.setStatus(compteDTO.getStatus());
+            compteCourant.setBalance(compteDTO.getBalance());
+            compteCourant.setCreatedAt(compteDTO.getCreatedAt());
+            compteCourant.setOverDraft(((CompteCourantDTO) compteDTO).getOverDraft());
             compteCourant.setClient(this.fromClientDTO(compteDTO.getClient()));
             return compteCourant;
         }
         else {
+            //System.out.println("je suis un compte epargne");
+            CompteEpargne compteEpargne = new CompteEpargne();
             BeanUtils.copyProperties(compteDTO,compteEpargne);
             compteEpargne.setClient(this.fromClientDTO(compteDTO.getClient()));
             return compteEpargne;
@@ -46,11 +53,11 @@ public class ClientMapper implements  IClientMapper{
 
     @Override
     public CompteDTO fromCompte(Compte compte) {
-        System.out.println("compte in mapper:"+compte);
+        //System.out.println("compte in mapper:"+compte);
         if(compte instanceof CompteCourant)
         {
-            System.out.println("je suis un compte courant");
-            System.out.println("client:"+compte.getClient());
+            //System.out.println("je suis un compte courant");
+            //System.out.println("client:"+compte.getClient());
             CompteCourantDTO compteCourant=new CompteCourantDTO();
             compteCourant.setCompteId(compte.getCompteId());
             compteCourant.setStatus(compte.getStatus());
@@ -61,7 +68,7 @@ public class ClientMapper implements  IClientMapper{
             return compteCourant;
         }
         else {
-            System.out.println("je suis un compte epargne");
+            //System.out.println("je suis un compte epargne");
             CompteEpargneDTO compteEpargne = new CompteEpargneDTO();
             BeanUtils.copyProperties(compte,compteEpargne);
             compteEpargne.setClient(this.fromClient(compte.getClient()));

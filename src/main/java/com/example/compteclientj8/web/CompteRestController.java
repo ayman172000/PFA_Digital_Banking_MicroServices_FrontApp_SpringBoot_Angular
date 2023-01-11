@@ -23,18 +23,22 @@ public class CompteRestController {
 
     @GetMapping("/comptes/{id}")
     CompteDTO getCompte(@PathVariable(name = "id")Long compteId) throws CompteException {
+        //System.out.println("je suis dans @GetMapping(\"/comptes\")");
+        //System.out.println("result:"+service.getCompte(compteId));
         return service.getCompte(compteId);
     }
 
     @PostMapping("/comptes")
     CompteDTO saveCompte(@RequestBody CompteReq req) throws ClientException {
-        System.out.println("req:"+req);
+        //System.out.println("req:"+req);
         return service.saveCompte(req);
     }
 
     @PutMapping("/comptes/{id}")
     public CompteDTO updateCompte(@PathVariable(name = "id")Long compteId,@RequestBody CompteDTO compteDTO)
     {
+        //System.out.println("je suis dans @PutMapping(\"/comptes/{id}\")");
+        //System.out.println("result:"+service.updateCompte(compteDTO));
         compteDTO.setCompteId(compteId);
         return service.updateCompte(compteDTO);
     }
