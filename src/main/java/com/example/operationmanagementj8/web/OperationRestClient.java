@@ -6,10 +6,7 @@ import com.example.operationmanagementj8.DTO.req.TransferReq;
 import com.example.operationmanagementj8.Exception.CompteException;
 import com.example.operationmanagementj8.service.IOperationService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,18 +17,18 @@ public class OperationRestClient {
     IOperationService service;
 
     @PostMapping("operations/debit")
-    public OperationDTO debit(DebitCreditReq cdReq) throws CompteException {
-        System.out.println("req web:"+cdReq);
+    public OperationDTO debit(@RequestBody DebitCreditReq cdReq) throws CompteException {
+        //System.out.println("req web:"+cdReq);
         return service.debit(cdReq);
     }
 
     @PostMapping("operations/credit")
-    public OperationDTO credit(DebitCreditReq cdReq) throws CompteException {
+    public OperationDTO credit(@RequestBody DebitCreditReq cdReq) throws CompteException {
         return service.credit(cdReq);
     }
 
     @PostMapping("operations/transfer")
-    public void transfer(TransferReq req) throws CompteException {
+    public void transfer(@RequestBody TransferReq req) throws CompteException {
         service.transfer(req);
     }
 

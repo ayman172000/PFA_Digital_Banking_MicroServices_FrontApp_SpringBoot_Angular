@@ -27,7 +27,7 @@ public class OperationService implements IOperationService {
     IOperationMapper mapper;
     @Override
     public OperationDTO debit(DebitCreditReq req) throws CompteException {
-        System.out.println("req:"+req);
+        //System.out.println("req:"+req);
         CompteDTO compte = restClient.getCompte(req.getCompteId());
         if(compte==null)
             throw new CompteException("compte not found");
@@ -57,6 +57,7 @@ public class OperationService implements IOperationService {
         operationDTO.setOperationDate(new Date());
         operationDTO.setDescription(req.getDescr());
         operationDTO.setCompte(compte);
+        operationDTO.setCompteId(compte.getCompteId());
         restClient.updateCompte(compte.getCompteId(), compte);
         Operation save = operationRepo.save(mapper.fromOperationDTO(operationDTO));
         return mapper.fromOperation(save);
@@ -73,6 +74,7 @@ public class OperationService implements IOperationService {
         operationDTO.setOperationDate(new Date());
         operationDTO.setAmount(req.getMontant());
         operationDTO.setDescription(req.getDescr());
+        operationDTO.setCompteId(compte.getCompteId());
         compte.setBalance(compte.getBalance()- req.getMontant());
         restClient.updateCompte(compte.getCompteId(), compte);
         Operation save = operationRepo.save(mapper.fromOperationDTO(operationDTO));
@@ -96,6 +98,7 @@ public class OperationService implements IOperationService {
         if(compte==null)
             throw new CompteException("compte not found");
         List<OperationDTO> collect = operationRepo.findAllByCompteId(compteId).stream().map(data -> {
+            data.setCompte(restClient.getCompte(compteId));
             return mapper.fromOperation(data);
         }).collect(Collectors.toList());
         return collect;

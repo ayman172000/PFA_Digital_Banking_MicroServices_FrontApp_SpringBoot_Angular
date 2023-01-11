@@ -10,6 +10,7 @@ public class OperationMapper implements IOperationMapper {
     public Operation fromOperationDTO(OperationDTO operationDTO) {
         Operation operation=new Operation();
         BeanUtils.copyProperties(operationDTO,operation);
+        operation.setCompte(operationDTO.getCompte());
         return operation;
     }
 
@@ -17,6 +18,7 @@ public class OperationMapper implements IOperationMapper {
     public OperationDTO fromOperation(Operation operation) {
         OperationDTO operationDTO=new OperationDTO();
         BeanUtils.copyProperties(operation,operationDTO);
+        operationDTO.setCompte(operation.getCompte());
         return operationDTO;
     }
 }

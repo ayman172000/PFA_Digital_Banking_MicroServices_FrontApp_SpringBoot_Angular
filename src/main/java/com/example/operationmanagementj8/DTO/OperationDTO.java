@@ -15,6 +15,7 @@ public class OperationDTO {
     private double amount;
     @Enumerated(EnumType.STRING)
     private OperationType type;
+    private Long compteId;
     private CompteDTO compte;
     private String description;
 }

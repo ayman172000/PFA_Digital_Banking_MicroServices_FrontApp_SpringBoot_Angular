@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public abstract class CompteDTO {
+public  class CompteDTO {
     private Long compteId;
     private double balance;
     private Date createdAt;
