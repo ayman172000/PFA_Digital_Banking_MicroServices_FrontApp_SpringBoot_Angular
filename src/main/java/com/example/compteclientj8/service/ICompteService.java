@@ -13,4 +13,6 @@ public interface ICompteService {
     CompteDTO saveCompte(CompteReq req) throws ClientException;
 
     CompteDTO updateCompte(CompteDTO compteDTO);
+
+    List<CompteDTO> getAllAccounts(Long clientId) throws ClientException;
 }

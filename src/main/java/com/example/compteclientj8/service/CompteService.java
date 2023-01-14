@@ -75,4 +75,15 @@ public class CompteService implements ICompteService {
         Compte save = compteRepo.save(this.mapper.fromCompteDTO(compteDTO));
         return mapper.fromCompte(save);
     }
+
+    @Override
+    public List<CompteDTO> getAllAccounts(Long clientId) throws ClientException {
+        ClientDTO client = clientService.getClient(clientId);
+        List<CompteDTO> collect = compteRepo.findAllByClient_ClientId(clientId).stream().map(data -> {
+            return mapper.fromCompte(data);
+        }).collect(Collectors.toList());
+        return collect;
+    }
+
+
 }
