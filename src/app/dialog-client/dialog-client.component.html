@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>{{actionBtn}} Client</h1>
+<div mat-dialog-content>
+  <form [formGroup]="ClientForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Nom</mat-label>
+      <input formControlName="nom" matInput placeholder="Nom">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Prenom</mat-label>
+      <input formControlName="prenom" matInput placeholder="Prenom">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput placeholder="Email">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Input</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+  </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button *ngIf="actionBtn=='save'" mat-raised-button color="primary" (click)="addClient()">{{actionBtn}}</button>
+  <button *ngIf="actionBtn=='update'" mat-raised-button color="primary" (click)="updateClient()">{{actionBtn}}</button>
+</div>
