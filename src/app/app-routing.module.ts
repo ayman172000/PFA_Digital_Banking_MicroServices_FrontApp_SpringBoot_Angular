@@ -8,9 +8,13 @@ import {PredictComponent} from "./predict/predict.component";
 
 const routes: Routes = [
   {path:"clients",component:ClientComponent},
+  {path:"refreshClient",component:ClientComponent},
   {path:"comptes",component:ComptesComponent},
+  {path:"refreshAccount",component:ComptesComponent},
+  {path:"comptes/client/:id",component:ComptesComponent},
   {path:"credits",component:CreditsComponent},
-  {path:"operations",component:OperationsComponent},
+  {path:"refreshOperation",component:OperationsComponent},
+  {path:"operations/compte/:id",component:OperationsComponent},
   {path:"predict",component:PredictComponent},
 ];
 

@@ -1,11 +1,19 @@
-export interface ClientDTO {
+export class ClientDTO {
   clientId: number;
   nom: string;
   prenom: string;
   email: string;
+
+
+  constructor(clientId: number, nom: string, prenom: string, email: string) {
+    this.clientId = clientId;
+    this.nom = nom;
+    this.prenom = prenom;
+    this.email = email;
+  }
 }
 
-export interface CompteDTO {
+export class CompteDTO {
   compteId: number;
   balance: number;
   createdAt: Date;
@@ -13,6 +21,17 @@ export interface CompteDTO {
   client: ClientDTO;
   overDraft?: number;
   interestRate?: number;
+
+
+  constructor(compteId: number, balance: number, createdAt: Date, status: string, client: ClientDTO, overDraft: number, interestRate: number) {
+    this.compteId = compteId;
+    this.balance = balance;
+    this.createdAt = createdAt;
+    this.status = status;
+    this.client = client;
+    this.overDraft = overDraft;
+    this.interestRate = interestRate;
+  }
 }
 
 export class CompteReq {

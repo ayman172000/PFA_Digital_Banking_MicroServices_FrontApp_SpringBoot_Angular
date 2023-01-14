@@ -1,4 +1,4 @@
-
+<button class="btn-success" (click)="openDialog()">new account</button>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort matSortActive="created" matSortDisableClear matSortDirection="desc">>
 
@@ -39,6 +39,21 @@
     <ng-container matColumnDef="interestRate" *ngIf="courant">
       <th mat-header-cell *matHeaderCellDef> Interest rate </th>
       <td mat-cell *matCellDef="let row"> {{row.interestRate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+      <td mat-cell *matCellDef="let row">
+        <button (click)="deleteAccount(row)" mat-icon-button color="warn">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button (click)="editAccount(row)" mat-icon-button color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-raised-button color="primary" class="ml-2" (click)="getHistory(row)" *ngIf="row">
+          History
+        </button>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

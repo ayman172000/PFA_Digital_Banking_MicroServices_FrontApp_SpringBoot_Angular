@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>Save Account</h1>
+<div mat-dialog-content>
+  <form [formGroup]="accountsForm">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" formControlName="type" value="CA" [(ngModel)]="selectedOption">
+      <label class="form-check-label">Curent account:</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" formControlName="type" value="SA" [(ngModel)]="selectedOption">
+      <label class="form-check-label">Saving account:</label>
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Balance</mat-label>
+      <input formControlName="balance" matInput placeholder="Nom" type="number">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="accountsForm.value.type=='CA'">
+      <mat-label>Over draft</mat-label>
+      <input formControlName="overDraft" matInput placeholder="Over draft">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline"  *ngIf="accountsForm.value.type=='SA'">
+      <mat-label>Interest rate</mat-label>
+      <input formControlName="interestRate" matInput placeholder="Interest rate">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="actionBtn=='Save'">
+      <mat-label>Client</mat-label>
+      <mat-select formControlName="clientId" placeholder="Choose Client">
+        <mat-option *ngFor="let data of client " value="{{data.clientId | number}}">{{data.nom}} {{data.prenom}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button *ngIf="actionBtn=='Save'" mat-raised-button color="primary" (click)="addAccount()">{{actionBtn}}</button>
+  <button *ngIf="actionBtn=='Update'" mat-raised-button color="primary" (click)="updateAccount()">{{actionBtn}}</button>
+</div>

@@ -63,6 +63,11 @@ export class ClientAccountServicService {
     return this.http.post<ClientDTO>(environment.clientAccountHost+"comptes",req)
   }
 
+  public getAllAccountsByClient(id:number)
+  {
+    return this.http.get<CompteDTO[]>(environment.clientAccountHost+"comptes/clients/"+id)
+  }
+
 
 
 }

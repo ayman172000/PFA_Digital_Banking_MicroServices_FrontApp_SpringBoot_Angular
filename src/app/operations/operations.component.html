@@ -70,8 +70,12 @@
               <label class="form-check-label">TRANSFER:</label>
             </div>
             <div class="mb-3" *ngIf="operationFromGroup.value.operationType=='TRANSFER'">
-              <label class="form-label">Account Destination :</label>
-              <input type="text" formControlName="accountDestination" class="form-control">
+              <mat-form-field appearance="outline">
+                <mat-label>Client</mat-label>
+                <mat-select formControlName="accountDestination" placeholder="Choose Account">
+                  <mat-option *ngFor="let data of compte " value="{{data.compteId | number}}">{{data.client.nom}} {{data.client.prenom}}</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
             <div class="mb-3">
               <label class="form-label">Amount :</label>

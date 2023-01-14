@@ -19,6 +19,9 @@ import { DialogClientComponent } from './dialog-client/dialog-client.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import { MatInputModule } from '@angular/material/input';
+import { DialogCompteComponent } from './dialog-compte/dialog-compte.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import {MatIconModule} from "@angular/material/icon";
     CreditsComponent,
     OperationsComponent,
     PredictComponent,
-    DialogClientComponent
+    DialogClientComponent,
+    DialogCompteComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,9 @@ import {MatIconModule} from "@angular/material/icon";
     ReactiveFormsModule,
     MatDialogModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
