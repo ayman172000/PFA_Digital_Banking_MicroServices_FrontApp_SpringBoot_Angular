@@ -12,6 +12,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin("*")
 public class CompteRestController {
     ICompteService service;
 
@@ -41,5 +42,10 @@ public class CompteRestController {
         //System.out.println("result:"+service.updateCompte(compteDTO));
         compteDTO.setCompteId(compteId);
         return service.updateCompte(compteDTO);
+    }
+
+    @GetMapping("/comptes/clients/{id}")
+    public List<CompteDTO> getAllAccountsByClientId(@PathVariable(name = "id") Long clientId) throws ClientException {
+        return  service.getAllAccounts(clientId);
     }
 }

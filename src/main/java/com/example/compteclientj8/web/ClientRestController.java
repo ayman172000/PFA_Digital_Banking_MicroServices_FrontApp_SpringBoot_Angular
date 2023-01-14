@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin("*")
 public class ClientRestController {
     IClientService service;
     @GetMapping("/clients")
