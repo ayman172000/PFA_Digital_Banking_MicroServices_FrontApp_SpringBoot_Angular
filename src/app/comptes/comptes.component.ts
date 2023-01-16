@@ -43,7 +43,6 @@ export class ComptesComponent implements OnInit{
     {
       this._service.getAllAccountsByClient(this.clientId).subscribe(data=>{
         this.dataSource.data=data
-        console.log(data)
       })
       /*    if(this.route.snapshot.url[0].path="gestionDetailsFactures")
           {
@@ -54,7 +53,6 @@ export class ComptesComponent implements OnInit{
     {
       this._service.getAllAccount().subscribe(data=>{
         this.dataSource.data=data
-        console.log(data)
       })
     }
   }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,9 +20,27 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import { MatInputModule } from '@angular/material/input';
-import { DialogCompteComponent } from './dialog-compte/dialog-compte.component';
 import {MatSelectModule} from "@angular/material/select";
+import {DialogCompteComponent} from "./dialog-compte/dialog-compte.component";
+import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
 
+export function kcFactory(kcService : KeycloakService){
+  return ()=>{
+    kcService.init({
+      config : {
+        realm :"Digital_Banking",
+        clientId : "front-apps",
+        url : "http://localhost:8080"
+      },
+      initOptions : {
+        onLoad : "check-sso",
+        checkLoginIframe : true
+      }
+    })
+  }
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +50,9 @@ import {MatSelectModule} from "@angular/material/select";
     OperationsComponent,
     PredictComponent,
     DialogClientComponent,
-    DialogCompteComponent
+    DialogCompteComponent,
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -50,9 +70,12 @@ import {MatSelectModule} from "@angular/material/select";
     MatButtonModule,
     MatIconModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    KeycloakAngularModule
   ],
-  providers: [],
+  providers: [
+    {provide : APP_INITIALIZER, deps : [KeycloakService],useFactory : kcFactory, multi : true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

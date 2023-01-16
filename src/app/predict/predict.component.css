@@ -1,3 +1,6 @@
+.container{
+  margin-top: 20px;
+}
 /* container for the vote results */
 .vote-results {
   display: flex;

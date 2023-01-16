@@ -6,6 +6,7 @@ import {MatSort} from "@angular/material/sort";
 import {ClientAccountServicService} from "../services/client-account-servic.service";
 import {CreditDTO} from "../model/CreditModel";
 import {CreditService} from "../services/credit.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-credits',
@@ -19,7 +20,8 @@ export class CreditsComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private _service:CreditService) {
+  constructor(private _service:CreditService,
+              private router:Router) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -38,5 +40,9 @@ export class CreditsComponent {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  goToPredict() {
+    this.router.navigateByUrl("/predict")
   }
 }
