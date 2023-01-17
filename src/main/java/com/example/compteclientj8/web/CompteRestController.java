@@ -12,7 +12,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@CrossOrigin("*")
+//@CrossOrigin("*")
 public class CompteRestController {
     ICompteService service;
 

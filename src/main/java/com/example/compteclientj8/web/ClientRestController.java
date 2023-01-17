@@ -5,15 +5,17 @@ import com.example.compteclientj8.DTO.req.ClientReq;
 import com.example.compteclientj8.exception.ClientException;
 import com.example.compteclientj8.service.IClientService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin("*")
+//@CrossOrigin("*")
 public class ClientRestController {
     IClientService service;
+
     @GetMapping("/clients")
     public List<ClientDTO> getAllClient(){
         return service.getAllClient();
