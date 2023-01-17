@@ -12,21 +12,21 @@ export class OperationService {
 
   public getHistoryAccount(accountId:number)
   {
-    return this.http.get<Operation[]>(environment.operationHost+"operations/comptes/"+accountId)
+    return this.http.get<Operation[]>(environment.gateWayHost+"operations/comptes/"+accountId)
   }
 
   public debit(req:CreditDebitReq)
   {
-    return this.http.post<Operation>(environment.operationHost+"operations/debit",req)
+    return this.http.post<Operation>(environment.gateWayHost+"operations/debit",req)
   }
 
   public credit(req:CreditDebitReq)
   {
-    return this.http.post<Operation>(environment.operationHost+"operations/credit",req)
+    return this.http.post<Operation>(environment.gateWayHost+"operations/credit",req)
   }
 
   public transfer(req:TransferReq)
   {
-    return this.http.post<Operation>(environment.operationHost+"operations/transfer",req)
+    return this.http.post<Operation>(environment.gateWayHost+"operations/transfer",req)
   }
 }

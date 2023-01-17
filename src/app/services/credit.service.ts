@@ -12,17 +12,17 @@ export class CreditService {
 
   public getAllCredit()
   {
-    return this.http.get<CreditDTO[]>(environment.creditHost+"credits")
+    return this.http.get<CreditDTO[]>(environment.gateWayHost+"credits")
   }
 
 
   public getAllCreditById(id:number)
   {
-    return this.http.get<CreditDTO>(environment.creditHost+"credits/"+id)
+    return this.http.get<CreditDTO>(environment.gateWayHost+"credits/"+id)
   }
 
   public saveCredit(req:CreditReq)
   {
-    return this.http.post(environment.creditHost+"credits",req)
+    return this.http.post(environment.gateWayHost+"credits",req)
   }
 }
