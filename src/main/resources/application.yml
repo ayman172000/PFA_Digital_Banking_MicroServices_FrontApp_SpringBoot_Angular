@@ -1,22 +1,16 @@
 spring:
   cloud:
     gateway:
-      routes:
-        - id: r1
-          uri: http://localhost:8080/
-          predicates:
-            - Path= /clients/**
-            - Path= /comptes/**
-        - id: r2
-          uri: http://localhost:8081/
-          predicates :
-            - Path= /credits/**
-        - id: r3
-          uri: http://localhost:8082/
-          predicates:
-            - Path= /operations/**
-    discovery:
-      enabled: false
-server:
-  port: 8883
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: '*'
+            allowedHeaders: '*'
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+        default-filters:
+          - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
 

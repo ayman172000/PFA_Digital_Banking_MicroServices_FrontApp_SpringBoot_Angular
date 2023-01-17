@@ -17,7 +17,7 @@ public class GatewayApplication {
         SpringApplication.run(GatewayApplication.class, args);
     }
 
-    //@Bean
+    @Bean
     //configuration static
     RouteLocator gatewayRoutes(RouteLocatorBuilder builder)
     {
@@ -39,16 +39,16 @@ public class GatewayApplication {
                 .route(r->r.path("/comptes/**")
                         .uri("lb://client-account-service"))
                 .route(r->r.path("/credits/**")
-                        .uri("lb://credit-management-service"))
+                        .uri("lb://credit-service"))
                 .route(r->r.path("/operations/**").
-                        uri("lb://operation-account-service"))
+                        uri("lb://operation-service"))
                 .build();
     }
 
 
 
     //configuration dynamic
-    @Bean
+    //@Bean
     DiscoveryClientRouteDefinitionLocator definitionLocator(
             ReactiveDiscoveryClient rdc,
             DiscoveryLocatorProperties properties)
