@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+//@CrossOrigin("*")
 public class OperationRestClient {
     IOperationService service;
 
