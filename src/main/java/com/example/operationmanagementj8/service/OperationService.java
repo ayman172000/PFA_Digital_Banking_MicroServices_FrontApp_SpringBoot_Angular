@@ -11,6 +11,7 @@ import com.example.operationmanagementj8.model.CompteCourantDTO;
 import com.example.operationmanagementj8.model.CompteDTO;
 import com.example.operationmanagementj8.repo.OperationRepo;
 import lombok.AllArgsConstructor;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,7 @@ public class OperationService implements IOperationService {
     ClientRestClient restClient;
     OperationRepo operationRepo;
     IOperationMapper mapper;
+    private StreamBridge streamBridge;
     @Override
     public OperationDTO debit(DebitCreditReq req) throws CompteException {
         //System.out.println("req:"+req);
@@ -59,7 +61,9 @@ public class OperationService implements IOperationService {
         operationDTO.setCompte(compte);
         operationDTO.setCompteId(compte.getCompteId());
         restClient.updateCompte(compte.getCompteId(), compte);
-        Operation save = operationRepo.save(mapper.fromOperationDTO(operationDTO));
+        //Operation save = operationRepo.save(mapper.fromOperationDTO(operationDTO));
+        Operation save = mapper.fromOperationDTO(operationDTO);
+        streamBridge.send("R1",save);
         return mapper.fromOperation(save);
     }
 
@@ -77,7 +81,9 @@ public class OperationService implements IOperationService {
         operationDTO.setCompteId(compte.getCompteId());
         compte.setBalance(compte.getBalance()- req.getMontant());
         restClient.updateCompte(compte.getCompteId(), compte);
-        Operation save = operationRepo.save(mapper.fromOperationDTO(operationDTO));
+        //Operation save = operationRepo.save(mapper.fromOperationDTO(operationDTO));
+        Operation save = mapper.fromOperationDTO(operationDTO);
+        streamBridge.send("R1",save);
         return mapper.fromOperation(save);
     }
 
