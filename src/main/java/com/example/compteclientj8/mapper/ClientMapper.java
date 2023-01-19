@@ -31,14 +31,8 @@ public class ClientMapper implements  IClientMapper{
     public Compte fromCompteDTO(CompteDTO compteDTO) {
         if(compteDTO instanceof CompteCourantDTO)
         {
-            //System.out.println("je suis un compte courant");
-            //System.out.println("client:"+compteDTO.getClient());
             CompteCourant compteCourant=new CompteCourant();
-            compteCourant.setCompteId(compteDTO.getCompteId());
-            compteCourant.setStatus(compteDTO.getStatus());
-            compteCourant.setBalance(compteDTO.getBalance());
-            compteCourant.setCreatedAt(compteDTO.getCreatedAt());
-            compteCourant.setOverDraft(((CompteCourantDTO) compteDTO).getOverDraft());
+            BeanUtils.copyProperties(compteDTO,compteCourant);
             compteCourant.setClient(this.fromClientDTO(compteDTO.getClient()));
             return compteCourant;
         }
@@ -56,14 +50,8 @@ public class ClientMapper implements  IClientMapper{
         //System.out.println("compte in mapper:"+compte);
         if(compte instanceof CompteCourant)
         {
-            //System.out.println("je suis un compte courant");
-            //System.out.println("client:"+compte.getClient());
-            CompteCourantDTO compteCourant=new CompteCourantDTO();
-            compteCourant.setCompteId(compte.getCompteId());
-            compteCourant.setStatus(compte.getStatus());
-            compteCourant.setBalance(compte.getBalance());
-            compteCourant.setCreatedAt(compte.getCreatedAt());
-            compteCourant.setOverDraft(((CompteCourant) compte).getOverDraft());
+            CompteCourantDTO  compteCourant=new CompteCourantDTO();
+            BeanUtils.copyProperties(compte,compteCourant);
             compteCourant.setClient(this.fromClient(compte.getClient()));
             return compteCourant;
         }

@@ -12,7 +12,7 @@ public interface ICompteService {
     List<CompteDTO> getAllCompte();
     CompteDTO saveCompte(CompteReq req) throws ClientException;
 
-    CompteDTO updateCompte(CompteDTO compteDTO);
+    CompteDTO updateCompte(CompteDTO compteDTO) throws CompteException;
 
     List<CompteDTO> getAllAccounts(Long clientId) throws ClientException;
 }

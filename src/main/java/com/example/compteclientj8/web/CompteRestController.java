@@ -36,8 +36,7 @@ public class CompteRestController {
     }
 
     @PutMapping("/comptes/{id}")
-    public CompteDTO updateCompte(@PathVariable(name = "id")Long compteId,@RequestBody CompteDTO compteDTO)
-    {
+    public CompteDTO updateCompte(@PathVariable(name = "id")Long compteId,@RequestBody CompteDTO compteDTO) throws CompteException {
         //System.out.println("je suis dans @PutMapping(\"/comptes/{id}\")");
         //System.out.println("result:"+service.updateCompte(compteDTO));
         compteDTO.setCompteId(compteId);

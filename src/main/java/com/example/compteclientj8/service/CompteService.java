@@ -70,9 +70,11 @@ public class CompteService implements ICompteService {
     }
 
     @Override
-    public CompteDTO updateCompte(CompteDTO compteDTO)
-    {
-        Compte save = compteRepo.save(this.mapper.fromCompteDTO(compteDTO));
+    public CompteDTO updateCompte(CompteDTO compteDTO) throws CompteException {
+        Compte compte = compteRepo.findById(compteDTO.getCompteId()).orElseThrow(() -> {
+            return new CompteException("compte not found");
+        });
+        Compte save = compteRepo.save(compte);
         return mapper.fromCompte(save);
     }
 
