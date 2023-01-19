@@ -25,6 +25,7 @@ import {DialogCompteComponent} from "./dialog-compte/dialog-compte.component";
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
+import { DialogCreditComponent } from './dialog-credit/dialog-credit.component';
 
 export function kcFactory(kcService : KeycloakService){
   return ()=>{
@@ -52,7 +53,8 @@ export function kcFactory(kcService : KeycloakService){
     DialogClientComponent,
     DialogCompteComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    DialogCreditComponent
   ],
   imports: [
     BrowserModule,

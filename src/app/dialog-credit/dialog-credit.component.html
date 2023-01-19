@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Save credit</h1>
+<div mat-dialog-content>
+  <form [formGroup]="creditForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input formControlName="amount" matInput placeholder="Amount" type="number">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Duration in month</mat-label>
+      <input formControlName="dim" matInput placeholder="Duration in month">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Client</mat-label>
+      <mat-select formControlName="client" placeholder="Choose Account">
+        <mat-option *ngFor="let data of client " value="{{data.clientId | number}}">{{data.nom}} {{data.prenom}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button mat-raised-button color="primary" (click)="addCredit()">Save</button>
+</div>

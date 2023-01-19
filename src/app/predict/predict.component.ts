@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {DialogCompteComponent} from "../dialog-compte/dialog-compte.component";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogCreditComponent} from "../dialog-credit/dialog-credit.component";
 
 @Component({
   selector: 'app-predict',
@@ -16,7 +19,8 @@ export class PredictComponent implements OnInit {
   hideClass = {'display': 'none'}
 
 
-  constructor( private http : HttpClient,private router:Router,private fb: FormBuilder) { }
+  constructor( private http : HttpClient,private router:Router,private fb: FormBuilder,
+               public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.preFormGroup = this.fb.group({
@@ -48,11 +52,17 @@ export class PredictComponent implements OnInit {
           this.dynamicStyles = {'background-color': 'red'}
         }else{
           this.dynamicStyles = {'background-color': '#4CAF50'}
+          this.dialog.open(DialogCreditComponent,{
+            width:'30%'
+          })
         }
         this.hideClass = {'display': 'block'}
         //this.router.navigateByUrl("/admin/products")
       }, error: err => {
         console.log(err);
+        this.dialog.open(DialogCreditComponent,{
+          width:'30%'
+        })
       }
     });
 
